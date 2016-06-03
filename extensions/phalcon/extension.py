@@ -175,14 +175,14 @@ def compile(install):
     #    newrelic.modify_php_ini()
     #    _log.info("NewRelic Installed.")
 	with open(self.php_ini_path, 'rt') as php_ini:
-            lines = php_ini.readlines()
-        extns = [line for line in lines if line.startswith('extension=')]
-        if len(extns) > 0:
-            pos = lines.index(extns[-1]) + 1
-        else:
-            pos = lines.index('#{PHP_EXTENSIONS}\n') + 1
-        lines.insert(pos, 'extension=phalcon.so\n')
-        with open(self.php_ini_path, 'wt') as php_ini:
-            for line in lines:
-                php_ini.write(line)
+		lines = php_ini.readlines()
+	extns = [line for line in lines if line.startswith('extension=')]
+	if len(extns) > 0:
+		pos = lines.index(extns[-1]) + 1
+	else:
+		pos = lines.index('#{PHP_EXTENSIONS}\n') + 1
+	lines.insert(pos, 'extension=phalcon.so\n')
+	with open(self.php_ini_path, 'wt') as php_ini:
+		for line in lines:
+			php_ini.write(line)
     return 0
